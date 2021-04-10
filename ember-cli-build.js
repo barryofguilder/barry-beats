@@ -1,24 +1,6 @@
 'use strict';
 
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
-const { join } = require('path');
-const isProduction = EmberApp.env() === 'production';
-
-const purgeCSS = {
-  module: require('@fullhuman/postcss-purgecss'),
-  options: {
-    content: [
-      // Specify all paths in the application that include Tailwind classes.
-      join(__dirname, 'app', 'index.html'),
-      join(__dirname, 'app', '**', '*.css'),
-      join(__dirname, 'app', '**', '*.hbs'),
-      join(__dirname, 'app', '**', '*.js'),
-    ],
-
-    // Include any special characters you're using in this regular expression.
-    defaultExtractor: (content) => content.match(/[^<>"'`\s]*[^<>"'`\s:]/g) || [],
-  },
-};
 
 module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
@@ -31,9 +13,8 @@ module.exports = function (defaults) {
               path: ['node_modules']
             }
           },
-          require('tailwindcss')('app/tailwind.config.js'),
+          require('@tailwindcss/jit')('app/tailwind.config.js'),
           require('autoprefixer'),
-          ...isProduction ? [purgeCSS] : []
         ]
       }
     }

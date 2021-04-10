@@ -1,0 +1,15 @@
+<h2>Songs</h2>
+
+<ul>
+  {{#each @model as |song|}}
+    <li>
+      <LinkTo
+        class="text-pink-500 underline hover:text-pink-700"
+        @route="songs.song"
+        @model={{song.id}}
+      >
+        {{song.name}}
+      </LinkTo>
+    </li>
+  {{/each}}
+</ul>

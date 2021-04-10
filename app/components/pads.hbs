@@ -1,0 +1,16 @@
+<div class="flex flex-wrap">
+  {{#each this.audio.sounds as |sound|}}
+    <div class="p-2">
+      <button
+        type="button"
+        class="
+          px-4 py-1 bg-teal-200 text-teal-800 rounded-md
+          focus:outline-none focus:ring
+        "
+        {{on "click" (fn this.audio.play sound)}}
+      >
+        {{sound}}
+      </button>
+    </div>
+  {{/each}}
+</div>

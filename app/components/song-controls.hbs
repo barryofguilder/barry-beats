@@ -1,0 +1,52 @@
+<div class="flex flex-row items-center space-x-8 p-4 bg-blue-400">
+  <div class="">
+    <button
+      type="button"
+      class="
+        w-16 h-8 bg-yellow-200 text-yellow-900 rounded-md
+        focus:outline-none focus:ring focus:ring-yellow-500
+      "
+      {{on "click" (if this.playback.isPlaying this.playback.stop this.playback.play)}}
+    >
+      {{#if this.playback.isPlaying}}
+        Stop
+      {{else}}
+        Play
+      {{/if}}
+    </button>
+  </div>
+
+  <div class="flex items-center">
+    <button
+      type="button"
+      class="
+        w-8 h-8 bg-orange-300 text-orange-900 rounded-md font-semibold
+        focus:outline-none focus:ring focus:ring-orange-500
+      "
+      {{on "click" this.playback.decreaseTempo}}
+    >
+      -
+    </button>
+
+    <div class="w-24 text-center">
+      {{@song.tempo}} BPM
+    </div>
+
+    <button
+      type="button"
+      class="
+        w-8 h-8 bg-orange-300 text-orange-900 rounded-md font-semibold
+        focus:outline-none focus:ring focus:ring-orange-500
+      "
+      {{on "click" this.playback.increaseTempo}}
+    >
+      +
+    </button>
+  </div>
+
+  <div>
+    [{{this.playback.bar}} :: {{this.playback.beat}} :: {{this.playback.sixteenth}}]
+
+    [{{@song.name}}]
+  </div>
+</div>

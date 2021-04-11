@@ -5,29 +5,31 @@ export default class ApplicationRoute extends Route {
   @service store;
 
   beforeModel() {
-    const kidA = this.store.createRecord('song', {
+    this._createIMightBeWrong();
+  }
+
+  _createIMightBeWrong() {
+    const song = this.store.createRecord('song', {
       id: 1,
-      name: 'Kid A',
+      name: 'I Might Be Wrong',
+      tempo: 110,
     });
-    const kick = kidA.channels.createRecord({ sound: 'kick' });
-    kick.steps.createRecord();
-    kick.steps.createRecord();
-    kick.steps.createRecord();
-    kick.steps.createRecord();
 
-    const clap = kidA.channels.createRecord({ sound: 'clap' });
-    clap.steps.createRecord();
-    clap.steps.createRecord();
-    clap.steps.createRecord();
-    clap.steps.createRecord();
-
-    this.store.createRecord('song', {
-      id: 2,
-      name: 'Treefingers',
-    });
-    this.store.createRecord('song', {
-      id: 3,
-      name: 'Rounded',
-    });
+    song.createChannel(
+      [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+      'kick'
+    );
+    song.createChannel(
+      [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0],
+      'snare'
+    );
+    song.createChannel(
+      [0, 0, 1, 0, 0, 0.5, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0],
+      'hihat_closed'
+    );
+    song.createChannel(
+      [0, 0, 0, 0, 0.5, 0, 0, 0.5, 0, 0, 0, 0, 0, 0, 0, 0],
+      'hihat_open'
+    );
   }
 }

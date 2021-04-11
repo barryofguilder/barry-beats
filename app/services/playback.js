@@ -1,9 +1,12 @@
 import Service from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 import { task, timeout } from 'ember-concurrency';
 
 export default class PlaybackService extends Service {
+  @service audio;
+
   @tracked song;
   @tracked tickCount = 0;
   @tracked isPlaying = false;
@@ -52,7 +55,10 @@ export default class PlaybackService extends Service {
       return;
     }
 
-    // play a sound
+    this.song.setTickCount(this.tickCount);
+
+    const playingNotes = this.song.getPlayingNotes();
+    this.audio.playNotes(playingNotes);
 
     yield timeout(this.interval);
 

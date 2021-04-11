@@ -1,7 +1,37 @@
-<div>
-  <span>{{@channel.sound}}</span>
+<div class="flex">
+  <div class="w-32 flex-shrink-0">
+    {{@channel.sound}}
 
-  {{#each @channel.steps as |step|}}
-    <StepEditor @step={{step}} />
-  {{/each}}
+    <button
+      type="button"
+      class="
+        ml-1 px-1 leading-none font-semibold bg-red-300 text-red-900 rounded-full
+        focus:outline-none focus:ring focus:ring-red-600
+      "
+      {{on "click" (fn @onDelete @channel)}}
+    >
+      -
+    </button>
+  </div>
+
+  <div class="flex flex-wrap">
+    {{#each @channel.steps as |step|}}
+      <div class="m-1">
+        <StepEditor @step={{step}} />
+      </div>
+    {{/each}}
+
+    <div class="w-8 flex items-center justify-center">
+      <button
+        type="button"
+        class="
+          px-1 leading-none font-semibold bg-green-300 text-green-900 rounded-full
+          focus:outline-none focus:ring focus:ring-green-600
+        "
+        {{on "click" this.addStep}}
+      >
+        +
+      </button>
+    </div>
+  </div>
 </div>

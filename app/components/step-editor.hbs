@@ -1,1 +1,13 @@
-[S]
+<button
+  type="button"
+  class="w-8 h-8 text-center {{if @step.isPlaying "bg-green-600" "bg-red-400"}}"
+  {{on "click" this.cycleVolume}}
+>
+  {{#if (eq @step.volume 0.5)}}
+    <span class="inline-block w-2 h-2 rounded-full bg-yellow-400"></span>
+  {{else if (eq @step.volume 1)}}
+    <span class="inline-block w-2 h-2 rounded-full bg-orange-700"></span>
+  {{else}}
+    <span class="inline-block w-2 h-2 rounded-full"></span>
+  {{/if}}
+</button>

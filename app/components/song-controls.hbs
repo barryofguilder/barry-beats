@@ -1,19 +1,17 @@
 <div class="flex flex-row items-center space-x-8 p-4 bg-blue-400">
-  <div class="">
-    <button
-      type="button"
-      class="
-        w-16 h-8 bg-yellow-200 text-yellow-900 rounded-md
-        focus:outline-none focus:ring focus:ring-yellow-500
-      "
-      {{on "click" (if this.playback.isPlaying this.playback.stop this.playback.play)}}
-    >
-      {{#if this.playback.isPlaying}}
-        Stop
-      {{else}}
-        Play
-      {{/if}}
-    </button>
+  <div>
+    {{#let this.playback.isPlaying as |isPlaying|}}
+      <button
+        type="button"
+        class="
+          w-16 h-8 {{if isPlaying "bg-yellow-400" "bg-yellow-200"}} rounded-md
+          focus:outline-none focus:ring focus:ring-yellow-500
+        "
+        {{on "click" (if isPlaying this.playback.stop this.playback.play)}}
+      >
+        {{if isPlaying "Stop" "Play"}}
+      </button>
+    {{/let}}
   </div>
 
   <div class="flex items-center">

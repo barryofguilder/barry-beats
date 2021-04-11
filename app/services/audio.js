@@ -7,7 +7,7 @@ export default class AudioService extends Service {
     super(...arguments);
 
     const howl = new Howl({
-      src: ['sprite.mp3'],
+      src: ['/sprite.mp3'],
       sprite: {
         cowbell: [0, 300],
         conga_hi: [400, 300],
@@ -36,7 +36,15 @@ export default class AudioService extends Service {
   }
 
   @action
-  play(sound) {
+  playSound(sound) {
     this.howl.play(sound);
+  }
+
+  @action
+  playNotes(notes) {
+    notes.forEach((note) => {
+      const soundId = this.howl.play(note.sound);
+      this.howl.volume(note.volume, soundId);
+    });
   }
 }

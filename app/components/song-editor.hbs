@@ -1,5 +1,20 @@
-<div class="p-4 bg-green-300">
-  {{#each @song.channels as |channel|}}
-    <ChannelEditor @channel={{channel}} />
-  {{/each}}
+<div class="p-4 bg-gray-300">
+  <div class="flex flex-col space-y-2">
+    {{#each @song.channels as |channel|}}
+      <ChannelEditor @channel={{channel}} @onDelete={{this.deleteChannel}} />
+    {{/each}}
+  </div>
+
+  <div class="mt-4">
+    <button
+      type="button"
+      class="
+        px-4 py-1 bg-teal-300 text-teal-900 border border-teal-500 rounded-md
+        focus:outline-none focus:ring focus:ring-teal-500
+      "
+      {{on "click" this.addChannel}}
+    >
+      + Channel
+    </button>
+  </div>
 </div>
